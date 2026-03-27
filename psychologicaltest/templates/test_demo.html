@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>潜意识自测表</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "SimSun", "宋体", serif;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 0 20px;
+            line-height: 1.8;
+            color: #333;
+        }
+        h1 {
+            font-size: 32px;
+            text-align: center;
+            font-weight: normal;
+            margin-bottom: 15px;
+        }
+        .subtitle {
+            font-size: 22px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .desc {
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        h2 {
+            font-size: 24px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-weight: normal;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+        .question {
+            font-size: 18px;
+            margin: 18px 0;
+        }
+        .options {
+            margin-left: 20px;
+            font-size: 18px;
+        }
+        .option-item {
+            display: inline-block;
+            margin-right: 30px;
+            margin-top: 5px;
+        }
+        .submit-btn {
+            display: block;
+            width: 200px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background-color: #333;
+            color: #fff;
+            font-size: 18px;
+            margin: 60px auto 30px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<form id="testForm" action="/test_app/testdemo/" method="POST">
+    {% csrf_token %}
+    <h1>《你的潜意识正在掌控你的人生吗？》</h1>
+    <div class="subtitle">——五分钟潜意识自测表</div>
+    <div class="desc">
+        请你直觉作答，不要深思，每一题只选一个<br>
+        最贴近你真实状态的选项。
+    </div>
+
+    <!-- 一、情绪觉察 5题 ×2 -->
+    <h2>一、情绪觉察（每题2分，共10分）</h2>
+    <div class="question">1、你是否经常因为不明原因感到焦虑、烦躁或心情低落？
+        <div class="options"><label class="option-item"><input type="radio" name="q1" value="2" required> 是</label><label class="option-item"><input type="radio" name="q1" value="0"> 否</label></div>
+    </div>
+    <div class="question">2、有没有一些你明知道“做了会后悔”，却还是反复去做的行为模式？
+        <div class="options"><label class="option-item"><input type="radio" name="q2" value="2" required> 是</label><label class="option-item"><input type="radio" name="q2" value="0"> 否</label></div>
+    </div>
+    <div class="question">3、当你想要改变时，是否总是容易拖延、放弃？
+        <div class="options"><label class="option-item"><input type="radio" name="q3" value="2" required> 是</label><label class="option-item"><input type="radio" name="q3" value="0"> 否</label></div>
+    </div>
+    <div class="question">4、你是否常常梦到过去的人、地方或重复场景？
+        <div class="options"><label class="option-item"><input type="radio" name="q4" value="2" required> 是</label><label class="option-item"><input type="radio" name="q4" value="0"> 否</label></div>
+    </div>
+    <div class="question">5、面对亲密关系是否容易感到无力或失控？
+        <div class="options"><label class="option-item"><input type="radio" name="q5" value="2" required> 是</label><label class="option-item"><input type="radio" name="q5" value="0"> 否</label></div>
+    </div>
+
+    <!-- 二、潜意识印记 3题 ×2 -->
+    <h2>二、潜意识印记（每题2分，共6分）</h2>
+    <div class="question">1、你是否总在重复类似人生剧本？
+        <div class="options"><label class="option-item"><input type="radio" name="q6" value="2" required> 是</label><label class="option-item"><input type="radio" name="q6" value="0"> 否</label></div>
+    </div>
+    <div class="question">2、你是否总在讨好、背负或牺牲？
+        <div class="options"><label class="option-item"><input type="radio" name="q7" value="2" required> 是</label><label class="option-item"><input type="radio" name="q7" value="0"> 否</label></div>
+    </div>
+    <div class="question">3、你是否相信命运注定？
+        <div class="options"><label class="option-item"><input type="radio" name="q8" value="2" required> 是</label><label class="option-item"><input type="radio" name="q8" value="0"> 否</label></div>
+    </div>
+
+    <!-- 三、灵性开放度 2题 ×2 -->
+    <h2>三、灵性开放度（每题2分，共4分）</h2>
+    <div class="question">1、你是否相信冥冥中自有安排？
+        <div class="options"><label class="option-item"><input type="radio" name="q9" value="2" required> 是</label><label class="option-item"><input type="radio" name="q9" value="0"> 否</label></div>
+    </div>
+    <div class="question">2、如果可以，你愿意体验前世吗？
+        <div class="options"><label class="option-item"><input type="radio" name="q10" value="2" required> 是</label><label class="option-item"><input type="radio" name="q10" value="0"> 否</label></div>
+    </div>
+
+    <!-- 四、控制与依附 10题 ×2 -->
+    <h2>四、控制与依附（每题2分，共20分）</h2>
+    <div class="question">1、你是否会因他人态度而强烈情绪？<div class="options"><label class="option-item"><input type="radio" name="q11" value="2" required> 是</label><label class="option-item"><input type="radio" name="q11" value="0"> 否</label></div></div>
+    <div class="question">2、你是否想控制亲密的人？<div class="options"><label class="option-item"><input type="radio" name="q12" value="2" required> 是</label><label class="option-item"><input type="radio" name="q12" value="0"> 否</label></div></div>
+    <div class="question">3、你是否害怕失去不健康关系？<div class="options"><label class="option-item"><input type="radio" name="q13" value="2" required> 是</label><label class="option-item"><input type="radio" name="q13" value="0"> 否</label></div></div>
+    <div class="question">4、你是否习惯自责？<div class="options"><label class="option-item"><input type="radio" name="q14" value="2" required> 是</label><label class="option-item"><input type="radio" name="q14" value="0"> 否</label></div></div>
+    <div class="question">5、你是否把快乐建立在别人身上？<div class="options"><label class="option-item"><input type="radio" name="q15" value="2" required> 是</label><label class="option-item"><input type="radio" name="q15" value="0"> 否</label></div></div>
+    <div class="question">6、别人疏远你会自我怀疑？<div class="options"><label class="option-item"><input type="radio" name="q16" value="2" required> 是</label><label class="option-item"><input type="radio" name="q16" value="0"> 否</label></div></div>
+    <div class="question">7、你是否需要他人认可才觉得够好？<div class="options"><label class="option-item"><input type="radio" name="q17" value="2" required> 是</label><label class="option-item"><input type="radio" name="q17" value="0"> 否</label></div></div>
+    <div class="question">8、你是否牺牲自己维持关系？<div class="options"><label class="option-item"><input type="radio" name="q18" value="2" required> 是</label><label class="option-item"><input type="radio" name="q18" value="0"> 否</label></div></div>
+    <div class="question">9、你是否在关系中重复受伤？<div class="options"><label class="option-item"><input type="radio" name="q19" value="2" required> 是</label><label class="option-item"><input type="radio" name="q19" value="0"> 否</label></div></div>
+    <div class="question">10、你是否觉得够好就不会被离开？<div class="options"><label class="option-item"><input type="radio" name="q20" value="2" required> 是</label><label class="option-item"><input type="radio" name="q20" value="0"> 否</label></div></div>
+
+    <!-- 五、内在小孩 10题 ×2 -->
+    <h2>五、内在小孩（每题2分，共20分）</h2>
+    <div class="question">1、童年是否被冷落忽视？<div class="options"><label class="option-item"><input type="radio" name="q21" value="2" required> 是</label><label class="option-item"><input type="radio" name="q21" value="0"> 否</label></div></div>
+    <div class="question">2、你是否渴望被照顾拯救？<div class="options"><label class="option-item"><input type="radio" name="q22" value="2" required> 是</label><label class="option-item"><input type="radio" name="q22" value="0"> 否</label></div></div>
+    <div class="question">3、你是否害怕被拒绝批评？<div class="options"><label class="option-item"><input type="radio" name="q23" value="2" required> 是</label><label class="option-item"><input type="radio" name="q23" value="0"> 否</label></div></div>
+    <div class="question">4、你是否很难说不？<div class="options"><label class="option-item"><input type="radio" name="q24" value="2" required> 是</label><label class="option-item"><input type="radio" name="q24" value="0"> 否</label></div></div>
+    <div class="question">5、你是否伪装坚强内心脆弱？<div class="options"><label class="option-item"><input type="radio" name="q25" value="2" required> 是</label><label class="option-item"><input type="radio" name="q25" value="0"> 否</label></div></div>
+    <div class="question">6、你是否渴望被无条件接纳？<div class="options"><label class="option-item"><input type="radio" name="q26" value="2" required> 是</label><label class="option-item"><input type="radio" name="q26" value="0"> 否</label></div></div>
+    <div class="question">7、你是否反复选不对的人？<div class="options"><label class="option-item"><input type="radio" name="q27" value="2" required> 是</label><label class="option-item"><input type="radio" name="q27" value="0"> 否</label></div></div>
+    <div class="question">8、你是否压抑脆弱？<div class="options"><label class="option-item"><input type="radio" name="q28" value="2" required> 是</label><label class="option-item"><input type="radio" name="q28" value="0"> 否</label></div></div>
+    <div class="question">9、你是否觉得自己不够好？<div class="options"><label class="option-item"><input type="radio" name="q29" value="2" required> 是</label><label class="option-item"><input type="radio" name="q29" value="0"> 否</label></div></div>
+    <div class="question">10、亲密关系中像孩子般易受伤？<div class="options"><label class="option-item"><input type="radio" name="q30" value="2" required> 是</label><label class="option-item"><input type="radio" name="q30" value="0"> 否</label></div></div>
+
+    <!-- 六、自我认知 10题 ×3 -->
+    <h2>六、自我认知与生命方向（每题3分，共30分）</h2>
+    <div class="question">1、人生缺乏方向感？<div class="options"><label class="option-item"><input type="radio" name="q31" value="3" required> 是</label><label class="option-item"><input type="radio" name="q31" value="0"> 否</label></div></div>
+    <div class="question">2、不知自己是谁该往哪走？<div class="options"><label class="option-item"><input type="radio" name="q32" value="3" required> 是</label><label class="option-item"><input type="radio" name="q32" value="0"> 否</label></div></div>
+    <div class="question">3、一直在为他人活？<div class="options"><label class="option-item"><input type="radio" name="q33" value="3" required> 是</label><label class="option-item"><input type="radio" name="q33" value="0"> 否</label></div></div>
+    <div class="question">4、难以表达真实自己？<div class="options"><label class="option-item"><input type="radio" name="q34" value="3" required> 是</label><label class="option-item"><input type="radio" name="q34" value="0"> 否</label></div></div>
+    <div class="question">5、努力变好却内心空虚？<div class="options"><label class="option-item"><input type="radio" name="q35" value="3" required> 是</label><label class="option-item"><input type="radio" name="q35" value="0"> 否</label></div></div>
+    <div class="question">6、活得辛苦却说不出哪里错？<div class="options"><label class="option-item"><input type="radio" name="q36" value="3" required> 是</label><label class="option-item"><input type="radio" name="q36" value="0"> 否</label></div></div>
+    <div class="question">7、羡慕活得自在的人？<div class="options"><label class="option-item"><input type="radio" name="q37" value="3" required> 是</label><label class="option-item"><input type="radio" name="q37" value="0"> 否</label></div></div>
+    <div class="question">8、想突破却没力量？<div class="options"><label class="option-item"><input type="radio" name="q38" value="3" required> 是</label><label class="option-item"><input type="radio" name="q38" value="0"> 否</label></div></div>
+    <div class="question">9、直觉自己命里有任务？<div class="options"><label class="option-item"><input type="radio" name="q39" value="3" required> 是</label><label class="option-item"><input type="radio" name="q39" value="0"> 否</label></div></div>
+    <div class="question">10、渴望觉醒成长重启人生？<div class="options"><label class="option-item"><input type="radio" name="q40" value="3" required> 是</label><label class="option-item"><input type="radio" name="q40" value="0"> 否</label></div></div>
+
+    <!-- 七、自控力 10题 ×1 -->
+    <h2>七、潜意识自控力（每题1分，共10分）</h2>
+    <div class="question">1、面对诱惑容易妥协？<div class="options"><label class="option-item"><input type="radio" name="q41" value="1" required> 是</label><label class="option-item"><input type="radio" name="q41" value="0"> 否</label></div></div>
+    <div class="question">2、冲动决定事后后悔？<div class="options"><label class="option-item"><input type="radio" name="q42" value="1" required> 是</label><label class="option-item"><input type="radio" name="q42" value="0"> 否</label></div></div>
+    <div class="question">3、很难坚持长期目标？<div class="options"><label class="option-item"><input type="radio" name="q43" value="1" required> 是</label><label class="option-item"><input type="radio" name="q43" value="0"> 否</label></div></div>
+    <div class="question">4、明知不好仍要做？<div class="options"><label class="option-item"><input type="radio" name="q44" value="1" required> 是</label><label class="option-item"><input type="radio" name="q44" value="0"> 否</label></div></div>
+    <div class="question">5、关键节点容易掉链子？<div class="options"><label class="option-item"><input type="radio" name="q45" value="1" required> 是</label><label class="option-item"><input type="radio" name="q45" value="0"> 否</label></div></div>
+    <div class="question">6、经常责怪自己？<div class="options"><label class="option-item"><input type="radio" name="q46" value="1" required> 是</label><label class="option-item"><input type="radio" name="q46" value="0"> 否</label></div></div>
+    <div class="question">7、试图改变却被拉回原点？<div class="options"><label class="option-item"><input type="radio" name="q47" value="1" required> 是</label><label class="option-item"><input type="radio" name="q47" value="0"> 否</label></div></div>
+    <div class="question">8、明明知道却做不到？<div class="options"><label class="option-item"><input type="radio" name="q48" value="1" required> 是</label><label class="option-item"><input type="radio" name="q48" value="0"> 否</label></div></div>
+    <div class="question">9、反复设定目标反复失败？<div class="options"><label class="option-item"><input type="radio" name="q49" value="1" required> 是</label><label class="option-item"><input type="radio" name="q49" value="0"> 否</label></div></div>
+    <div class="question">10、很难坚持做完一件事？<div class="options"><label class="option-item"><input type="radio" name="q50" value="1" required> 是</label><label class="option-item"><input type="radio" name="q50" value="0"> 否</label></div></div>
+
+    <!-- 只传总分，不显示 -->
+    <input type="hidden" name="total" id="totalScore">
+
+    <button type="submit" class="submit-btn">提交测评</button>
+</form>
+
+<script>
+document.getElementById('testForm').addEventListener('submit', function(e) {
+    let total = 0;
+    for(let i=1; i<=50; i++) {
+        let sel = document.querySelector('input[name="q'+i+'"]:checked');
+        if(sel) total += parseInt(sel.value);
+    }
+    document.getElementById('totalScore').value = total;
+});
+</script>
+</body>
+</html>

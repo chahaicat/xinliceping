@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>潜意识评分结果</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+        body {
+            background-color: #f5f7fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        .score-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .score-number {
+            font-size: 48px;
+            font-weight: bold;
+            color: #2f54eb;
+            margin: 10px 0;
+        }
+        .score-level {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .level-desc {
+            font-size: 16px;
+            color: #888;
+            line-height: 1.6;
+        }
+        .suggestion-section {
+            margin-top: 30px;
+        }
+        .suggestion-section h2 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 15px;
+            padding-left: 8px;
+            border-left: 4px solid #ffd700;
+        }
+        .suggestion-content {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.8;
+            background-color: #fafafa;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .level-table {
+            width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
+        }
+        .level-table th, .level-table td {
+            border: 1px solid #e8e8e8;
+            padding: 12px;
+            text-align: left;
+            font-size: 14px;
+        }
+        .level-table th {
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        .highlight {
+            background-color: #fff9e6;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>潜意识评分结果</h1>
+        <div class="score-section">
+            <div class="score-number" id="score">{{ score }}</div>
+            <div class="score-level" id="level">--</div>
+            <div class="level-desc" id="levelDesc">--</div>
+        </div>
+        <div class="suggestion-section">
+            <h2>个性化建议</h2>
+            <div class="suggestion-content" id="suggestion">--</div>
+        </div>
+        <div class="level-table-section">
+            <h2>评分等级划分</h2>
+            <table class="level-table">
+                <thead>
+                    <tr>
+                        <th>分数区间</th>
+                        <th>等级类型</th>
+                        <th>等级描述</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="row80">
+                        <td>80~100分</td>
+                        <td>高度受潜意识影响型</td>
+                        <td>潜意识模式主导人生，重复剧本显著，建议深度疗愈与重新设定潜意识地图</td>
+                    </tr>
+                    <tr id="row60">
+                        <td>60~79分</td>
+                        <td>中度受潜意识影响型</td>
+                        <td>潜意识对你的关系、行为、命运有显著作用，适合系统觉察+介入</td>
+                    </tr>
+                    <tr id="row40">
+                        <td>40~59分</td>
+                        <td>潜意识觉醒临界型</td>
+                        <td>潜意识开始浮现，适合进一步做催眠体验或自我探索</td>
+                    </tr>
+                    <tr id="row0">
+                        <td>0~39分</td>
+                        <td>自主意识主导型</td>
+                        <td>潜意识干扰较小，建议继续保持内在觉察与自我引导能力</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // 从 Django 模板变量获取分数
+        const score = parseInt(document.getElementById('score').textContent);
+
+        // 定义等级和建议数据
+        const levelData = [
+            {
+                min: 80, max: 100,
+                level: "高度受潜意识影响型",
+                desc: "潜意识模式主导人生，重复剧本显著，建议深度疗愈与重新设定潜意识地图",
+                suggestion: "你已经暴露出非常深层的潜意识旧地图，可能反复经历关系创伤、方向迷失、自我否定等循环。建议你通过【系统催眠】【内在小孩疗愈】【前世回溯】等方式，进入潜意识核心层面，重设脚本，真正实现改变。"
+            },
+            {
+                min: 60, max: 79,
+                level: "中度受潜意识影响型",
+                desc: "潜意识对你的关系、行为、命运有显著作用，适合系统觉察+介入",
+                suggestion: "你处在“意识觉醒”的中间阶段，已开始意识到旧有信念或创伤影响了你的人生选择。此阶段最关键的是：由知道 → 到做到 → 到整合，需要通过体验式催眠、情绪释放、潜意识对话等路径落地。"
+            },
+            {
+                min: 40, max: 59,
+                level: "潜意识觉醒临界型",
+                desc: "潜意识开始浮现，适合进一步做催眠体验或自我探索",
+                suggestion: "你正在进入转化的边缘，只需一点稳定练习，就能完成内在跃迁。建议你尝试【潜意识唤醒音频】或参与【觉察力训练营】强化内在力量。"
+            },
+            {
+                min: 0, max: 39,
+                level: "自主意识主导型",
+                desc: "潜意识干扰较小，建议继续保持内在觉察与自我引导能力",
+                suggestion: "说明你的自我意识相对清晰，有很强的自我引导与情绪管理能力。可进入更高维度的探索：如前世记忆、灵性天赋、使命整合等，扩展人生视野。"
+            }
+        ];
+
+        // 根据分数匹配等级
+        function getLevelInfo(score) {
+            for (let item of levelData) {
+                if (score >= item.min && score <= item.max) {
+                    return item;
+                }
+            }
+            return null;
+        }
+
+        // 渲染页面
+        function renderResult(score) {
+            const info = getLevelInfo(score);
+            if (!info) return;
+
+            document.getElementById('level').textContent = info.level;
+            document.getElementById('levelDesc').textContent = info.desc;
+            document.getElementById('suggestion').textContent = info.suggestion;
+
+            // 高亮当前等级对应的表格行
+            document.querySelectorAll('.level-table tbody tr').forEach(row => {
+                row.classList.remove('highlight');
+            });
+            if (info.min >= 80) document.getElementById('row80').classList.add('highlight');
+            else if (info.min >= 60) document.getElementById('row60').classList.add('highlight');
+            else if (info.min >= 40) document.getElementById('row40').classList.add('highlight');
+            else document.getElementById('row0').classList.add('highlight');
+        }
+
+        // 初始化渲染
+        renderResult(score);
+    </script>
+</body>
+</html>

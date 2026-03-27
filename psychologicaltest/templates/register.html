@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            padding: 50px 20px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .title {
+            text-align: center;
+            color: #333;
+            margin-bottom: 35px;
+            font-size: 24px;
+        }
+
+        .form-item {
+            margin-bottom: 22px;
+        }
+
+        .form-item label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            height: 42px;
+            padding: 0 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #409eff;
+        }
+
+        .gender-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .gender-group label {
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            width: 100%;
+            height: 45px;
+            background-color: #409eff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #337ecc;
+        }
+
+        /* 必填项红色星号 */
+        .required {
+            color: red;
+            margin-left: 4px;
+        }
+
+        /* 错误提示样式 */
+        .error-tip {
+            color: #f56c6c;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="title">登录</h2>
+        <form method="post" action="/register/register/" id="regForm">
+            {% csrf_token %}
+
+            <div class="form-item">
+                <label>你的名字<span class="required">*</span></label>
+                <input type="text" name="uname" required>
+            </div>
+
+            <div class="form-item">
+                <label>你的性别<span class="required">*</span></label>
+                <div class="gender-group">
+                    <label><input type="radio" name="gender" value="male" required> 男</label>
+                    <label><input type="radio" name="gender" value="female"> 女</label>
+                </div>
+            </div>
+
+            <div class="form-item">
+                <label>你的年龄<span class="required">*</span></label>
+                <!-- 年龄输入框：限制数字 + 最大100 -->
+                <input type="number" name="uage" id="uage" min="1" max="100" required oninput="if(value>100) value=100; if(value<1) value=1">
+                <div class="error-tip" id="ageTip">年龄必须是 1~100 之间的数字</div>
+            </div>
+
+            <div class="form-item">
+                <input type="submit" class="submit-btn" value="进入测试">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // 表单提交验证
+        const form = document.getElementById('regForm');
+        const uage = document.getElementById('uage');
+        const ageTip = document.getElementById('ageTip');
+
+        form.addEventListener('submit', function(e) {
+            const ageValue = parseInt(uage.value);
+
+            // 不是数字 或 小于1 或 大于100 → 阻止提交
+            if (isNaN(ageValue) || ageValue < 1 || ageValue > 100) {
+                ageTip.style.display = 'block';
+                e.preventDefault(); // 阻止表单提交
+            } else {
+                ageTip.style.display = 'none';
+            }
+        });
+
+        // 输入时隐藏错误提示
+        uage.addEventListener('input', function() {
+            ageTip.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
